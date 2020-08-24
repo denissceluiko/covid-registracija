@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'PersonController@create')->name('home');
+
+Route::resource('attendance', 'AttendanceController');
+
+Route::group(['prefix' => 'person'], function() {
+    Route::get('forget', 'PersonController@forget');
 });
+Route::resource('person', 'PersonController')->only(['create', 'store']);
+
+Route::resource('room', 'RoomController');
