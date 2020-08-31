@@ -28,8 +28,8 @@
                             {{ Form::submit('Reģistrēties', ['class' => 'btn btn-primary btn-block']) }}
                             {{ Form::close() }}
                         </div>
+                        @include('snippets.qr-reader')
                     </div>
-                    @include('snippets.qr-reader')
                 @endif
             </div>
         </div>
