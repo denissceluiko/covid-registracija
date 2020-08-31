@@ -1,5 +1,4 @@
 const mix = require('laravel-mix');
-const QrScanner = require('qr-scanner');
 
 /*
  |--------------------------------------------------------------------------
@@ -13,4 +12,6 @@ const QrScanner = require('qr-scanner');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .copy('resources/js/qr-scanner-worker.min.js','public/js/qr-scanner-worker.min.js')
+    .copy('resources/js/qr-scanner.min.js','public/js/qr-scanner.min.js')
     .sass('resources/sass/app.scss', 'public/css');

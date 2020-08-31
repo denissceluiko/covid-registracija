@@ -29,6 +29,7 @@
                             {{ Form::close() }}
                         </div>
                     </div>
+                    @include('snippets.qr-reader')
                 @endif
             </div>
         </div>
