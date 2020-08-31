@@ -4,17 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Person;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class PersonController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('foreign')->except('forget');
+    }
+
     public function create()
     {
-        if (Session::get('person') !== null)
-        {
-            return redirect()->route('attendance.create');
-        }
-
         return view('person.create');
     }
 
@@ -23,7 +22,7 @@ class PersonController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'surname' => 'required',
-            'code' => 'required|unique:people,code',
+            'code' => 'required',
             'phone' => 'required',
         ]);
 
@@ -32,14 +31,14 @@ class PersonController extends Controller
             $request->all()
         );
 
-        Session::put('person', $person->code);
+        Person::implant($person->code);
 
         return redirect()->route('attendance.create');
     }
 
     public function forget()
     {
-        Session::forget('person');
+        Person::extract();
         return redirect()->route('home');
     }
 }

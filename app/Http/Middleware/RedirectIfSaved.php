@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use App\Person;
 use Closure;
 
-class CheckSavedPerson
+class RedirectIfSaved
 {
     /**
      * Handle an incoming request.
@@ -16,8 +16,8 @@ class CheckSavedPerson
      */
     public function handle($request, Closure $next)
     {
-        if (Person::check() == false) {
-            return redirect()->route('person.create');
+        if (Person::check()) {
+            return redirect()->route('attendance.create');
         }
 
         return $next($request);
