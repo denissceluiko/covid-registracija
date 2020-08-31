@@ -1,14 +1,9 @@
 <div class="card-body">
-    <video id="qr-video"></video>
-    <canvas id="qr-canvas"></canvas>
+    <video id="qr-video" class="w-100"></video>
+</div>
+<div class="card-body">
     <button class="btn btn-light" id="flash-toggle">⚡</button>
     <p class="card-text" id="cam-qr-result"></p>
-</div>
-<div>
-    <label>
-        <input id="show-scan-region" type="checkbox">
-        Show scan region
-    </label>
 </div>
 <script type="module">
     import QrScanner from '/js/qr-scanner.min.js';
@@ -48,7 +43,7 @@
     // for debugging
     window.scanner = scanner;
 
-    canvas = scanner.$canvas;
+    scanner.$canvas.setAttribute('id', '');
 
     document.getElementById('show-scan-region').addEventListener('change', (e) => {
         const input = e.target;
