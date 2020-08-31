@@ -16,7 +16,7 @@
     const camQrResult = document.getElementById('cam-qr-result');
 
     function setResult(result) {
-        if (result.startsWith({{ route('room.index') }}))
+        if (result.startsWith('{{ route('room.index') }}'))
         {
             window.location.replace(result);
         }
