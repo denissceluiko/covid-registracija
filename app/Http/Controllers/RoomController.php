@@ -11,6 +11,11 @@ class RoomController extends Controller
         $this->middleware('saved');
     }
 
+    public function index()
+    {
+
+    }
+
     public function show(Room $room)
     {
         return redirect()->route('attendance.create', $room->code);
