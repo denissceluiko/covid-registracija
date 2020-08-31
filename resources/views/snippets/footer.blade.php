@@ -1,7 +1,10 @@
 <div class="container">
-    <div class="row">
-        <div class="col-2 offset-5">
-            <p class="text-center my-3">
+    <div class="row mt-3">
+        <div class="col-4 offset-4">
+{{--            <p class="text-center">--}}
+{{--                <a href="{{ action('PersonController@me') }}">Mani dati</a>--}}
+{{--            </p>--}}
+            <p class="text-center">
                 <a href="{{ action('PersonController@forget') }}">Iziet</a>
             </p>
         </div>

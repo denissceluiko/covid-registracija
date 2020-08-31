@@ -10,6 +10,7 @@
                     </div>
                     <div class="card-body">
                         {{ Form::open(['route' => 'person.store']) }}
+                        {{ Form::hidden('target_url', back()->getTargetUrl()) }}
                         <div class="form-group">
                             {{ Form::label('name', 'Vārds') }}
                             {{ Form::text('name', null, ['class' => 'form-control', 'required']) }}

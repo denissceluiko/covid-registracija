@@ -11,16 +11,21 @@ class Person extends Model
     protected static $cookieName = '5g_implant';
     protected static $cookieLifetime = 43200; // 30 days
 
-    public function attended()
+    public function rooms()
     {
         return $this->belongsToMany(Room::class, 'attendance')
             ->using(Attendance::class)
             ->withTimestamps();
     }
 
-    public function room()
+    public function attendances()
     {
-        return $this->attended()->orderByDesc('created_at')->first();
+        return $this->hasMany(Attendance::class);
+    }
+
+    public function latestAttendance()
+    {
+        return $this->attendances()->orderByDesc('created_at')->with('room')->first();
     }
 
     public static function byCode($code)

@@ -15,13 +15,15 @@ class AttendanceController extends Controller
 
     public function index()
     {
-        $room = Person::identify()->room();
-        return view('attendance.index', compact('room'));
+        $attendance = Person::identify()->latestAttendance();
+        return view('attendance.index', compact('attendance'));
     }
 
-    public function create()
+    public function create(Room $room = null)
     {
-        return view('attendance.create');
+        $attendance = Person::identify()->latestAttendance();
+
+        return view('attendance.create', compact('room'));
     }
 
     public function store(Request $request)
@@ -33,7 +35,7 @@ class AttendanceController extends Controller
         $room = Room::byCode($request->code);
         $person = Person::identify();
 
-        $person->attended()->save($room);
+        $person->rooms()->save($room);
 
         return redirect()->route('attendance.index');
     }

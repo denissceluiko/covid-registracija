@@ -24,6 +24,7 @@ class PersonController extends Controller
             'surname' => 'required',
             'code' => 'required',
             'phone' => 'required',
+            'target_url' => 'nullable',
         ]);
 
         $person = Person::firstOrCreate(
@@ -33,12 +34,17 @@ class PersonController extends Controller
 
         Person::implant($person->code);
 
-        return redirect()->route('attendance.create');
+        return $request->has('target_url') ? redirect()->to($request->target_url) : back();
     }
 
     public function forget()
     {
         Person::extract();
         return redirect()->route('home');
+    }
+
+    public function me()
+    {
+        return;
     }
 }

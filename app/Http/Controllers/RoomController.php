@@ -2,9 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Room;
 
 class RoomController extends Controller
 {
-    //
+    public function __construct()
+    {
+        $this->middleware('saved');
+    }
+
+    public function show(Room $room)
+    {
+        return redirect()->route('attendance.create', $room->code);
+    }
+
+    public function poster(Room $room)
+    {
+        return view('room.poster', compact('room'));
+    }
 }
