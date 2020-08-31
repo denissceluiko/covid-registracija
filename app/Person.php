@@ -18,6 +18,11 @@ class Person extends Model
             ->withTimestamps();
     }
 
+    public function room()
+    {
+        return $this->attended()->orderByDesc('created_at')->first();
+    }
+
     public static function byCode($code)
     {
         return self::where('code', $code)->first();

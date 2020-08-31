@@ -4,11 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h3>{{ session()->get('person') }}</h3>
-                        <a href="{{ action('PersonController@forget') }}" class="btn btn-primary">Logout</a>
-                    </div>
+                <div class="card mt-3">
                     <div class="card-body">
                         {{ Form::open(['action' => 'AttendanceController@store']) }}
                         <div class="form-group">

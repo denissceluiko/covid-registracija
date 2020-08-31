@@ -13,6 +13,12 @@ class AttendanceController extends Controller
         $this->middleware('saved');
     }
 
+    public function index()
+    {
+        $room = Person::identify()->room();
+        return view('attendance.index', compact('room'));
+    }
+
     public function create()
     {
         return view('attendance.create');
@@ -29,11 +35,7 @@ class AttendanceController extends Controller
 
         $person->attended()->save($room);
 
-        return view('attendance.current');
+        return redirect()->route('attendance.index');
     }
 
-    public function current()
-    {
-        return view('attendance.current');
-    }
 }
