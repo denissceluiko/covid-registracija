@@ -1,5 +1,7 @@
 <div class="card-body">
-    <video id="qr-video" class="w-100"></video>
+    <div class="w-100">
+        <video id="qr-video"></video>
+    </div>
 </div>
 <div class="card-body">
     <button class="btn btn-light" id="flash-toggle">⚡</button>
