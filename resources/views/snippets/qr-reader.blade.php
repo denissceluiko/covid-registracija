@@ -1,5 +1,5 @@
 <div class="card-body">
-    <div class="w-100">
+    <div class="embed-responsive embed-responsive-1by1">
         <video id="qr-video"></video>
     </div>
 </div>
@@ -14,19 +14,15 @@
     const video = document.getElementById('qr-video');
     const flashToggle = document.getElementById('flash-toggle');
     const camQrResult = document.getElementById('cam-qr-result');
-    var canvas = document.getElementById('qr-canvas');
 
-    function setResult(label, result) {
-        label.textContent = result;
-        label.style.color = 'teal';
-        clearTimeout(label.highlightTimeout);
-        label.highlightTimeout = setTimeout(() => label.style.color = 'inherit', 100);
+    function setResult(result) {
+        if (result.startsWith({{ action('room.index') }}))
+        {
+            window.location.replace(result);
+        }
     }
 
-    // ####### Web Cam Scanning #######
-
-
-    const scanner = new QrScanner(video, result => setResult(camQrResult, result), error => {
+    const scanner = new QrScanner(video, result => setResult(result), error => {
         camQrResult.textContent = error;
         camQrResult.style.color = 'inherit';
     });
@@ -41,17 +37,4 @@
             }
         });
     });
-
-    // for debugging
-    window.scanner = scanner;
-
-    scanner.$canvas.setAttribute('id', '');
-
-    document.getElementById('show-scan-region').addEventListener('change', (e) => {
-        const input = e.target;
-        const label = input.parentNode;
-        label.parentNode.insertBefore(scanner.$canvas, label.nextSibling);
-        scanner.$canvas.style.display = input.checked ? 'block' : 'none';
-    });
-
 </script>
