@@ -27,6 +27,6 @@ Route::group(['prefix' => 'person'], function() {
 Route::resource('person', 'PersonController')->only(['create', 'store']);
 
 Route::group(['prefix' => 'room'], function() {
-    Route::get('{room}/poster', 'RoomController@poster');
+    Route::get('{room}/poster', 'RoomController@poster')->name('room.poster');
 });
 Route::resource('room', 'RoomController');
