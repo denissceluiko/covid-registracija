@@ -9,7 +9,7 @@ class PersonController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('foreign')->except('forget');
+        $this->middleware('foreign')->except(['forget', 'me']);
     }
 
     public function create()
@@ -45,6 +45,8 @@ class PersonController extends Controller
 
     public function me()
     {
-        return;
+        $person = Person::identify();
+        $attendances = $person->attendances;
+        return view('person.me', compact('attendances', 'person'));
     }
 }
